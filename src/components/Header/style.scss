@@ -1,0 +1,27 @@
+@import "../global/globalstyle/style.scss";
+.header {
+    @include flex();
+    height: 84px;
+    background-color: #101010;
+    color: #ffffff;
+    padding: 0 43px;
+    .logo {
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 43px;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .user {
+        @include flex();
+        gap: 25px;
+        &__image {
+            border-radius: 50%;
+            width: 44px;
+        }
+        &__name {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+}
