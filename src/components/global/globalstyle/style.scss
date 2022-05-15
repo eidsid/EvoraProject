@@ -1,0 +1,11 @@
+@mixin flex($dir: row, $gap: 0) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $gap;
+    flex-direction: $dir;
+}
+
+@mixin transation($time) {
+    transition: all ease-in-out $time;
+}
