@@ -1,0 +1,9 @@
+@import "../global/globalstyle/style.scss";
+.container {
+    @include flex(column);
+    padding: 0 43px;
+    background-color: #292929;
+    .ridesContainer {
+        min-height: 100vh;
+    }
+}

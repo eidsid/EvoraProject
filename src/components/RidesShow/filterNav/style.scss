@@ -38,7 +38,7 @@
             padding: 23px 30px;
             background: #131313;
             color: #ffffff;
-            @include transation(1s);
+            @include transation(0.4s);
             >span {
                 margin: 0 0 12px 12px;
                 font-weight: 300;

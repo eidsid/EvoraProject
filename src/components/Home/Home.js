@@ -1,16 +1,18 @@
 import Header from "../Header/Header";
 import RidesShow from "../RidesShow/RidesShow";
 import useFetch from "../global/FetchAPI/Fetch";
+import { useEffect, useState } from "react";
 function Home() {
-  let ridesApi = "https://assessment.api.vweb.app/rides";
   let userApi = "https://assessment.api.vweb.app/user";
-  let user = useFetch(userApi);
-  let rides = useFetch(ridesApi);
-  console.log(rides, user);
+  const [user, setuser] = useState({});
+  let userdata = useFetch(userApi);
+  useEffect(() => {
+    setuser(userdata);
+  }, [userdata]);
   return (
     <div className="home">
       <Header {...user} />
-      <RidesShow rides={rides} stationcode={user.station_code} />
+      <RidesShow user={user} />
     </div>
   );
 }

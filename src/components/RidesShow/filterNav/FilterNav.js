@@ -11,18 +11,24 @@ const FilterNav = (props) => {
   const filterMenuState = () => {
     setmenuActive(!menuActive);
   };
-  // console.log(props.states, props.citys);
-  const stateOptions = props.states.map((state, index) => {
+
+  const stateOptions = props.rides.map((ride) => {
     return (
-      <option value={state} key={state + index}>
-        {state}
+      <option
+        value={ride.origin_station_code}
+        key={ride.id * (Math.random() * 1000)}
+      >
+        {ride.state}
       </option>
     );
   });
-  const cityOptions = props.citys.map((city, index) => {
+  const cityOptions = props.rides.map((ride) => {
     return (
-      <option value={city} key={city + index}>
-        {city}
+      <option
+        value={ride.destination_station_code}
+        key={ride.id * (Math.random() * 1000)}
+      >
+        {ride.city}
       </option>
     );
   });
@@ -32,21 +38,30 @@ const FilterNav = (props) => {
       <ul className="filterList">
         <li
           className={activeLinke === 1 ? "active" : ""}
-          onClick={() => activeLink(1)}
+          onClick={() => {
+            activeLink(1);
+            props.filterNav(1);
+          }}
         >
           Nearest rides
         </li>
         <li
           className={activeLinke === 2 ? "active" : ""}
-          onClick={() => activeLink(2)}
+          onClick={() => {
+            activeLink(2);
+            props.filterNav(2);
+          }}
         >
-          Upcoming rides ({props.rideslength})
+          Upcoming rides ({props.nearComingRideslength})
         </li>
         <li
           className={activeLinke === 3 ? "active" : ""}
-          onClick={() => activeLink(3)}
+          onClick={() => {
+            activeLink(3);
+            props.filterNav(3);
+          }}
         >
-          Nearest rides({props.rideslength})
+          Past rides ({props.paserideslength})
         </li>
       </ul>
       <div className="dropDown">

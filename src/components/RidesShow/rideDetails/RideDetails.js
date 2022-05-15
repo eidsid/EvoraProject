@@ -9,8 +9,9 @@ const RideDetails = (props) => {
     state,
     station_path,
     destination_station_code,
+    stationcode,
   } = props;
-
+  let distance = destination_station_code - stationcode;
   return (
     <div className="details">
       <div className="col">
@@ -30,7 +31,12 @@ const RideDetails = (props) => {
           </p>
           <p>
             Distance:{" "}
-            <span> {destination_station_code - props.stationcode}</span>
+            <span>
+              {" "}
+              {distance < 0
+                ? Math.abs(distance) + " backword "
+                : distance + " forword "}
+            </span>
           </p>
         </div>
       </div>
