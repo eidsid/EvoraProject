@@ -3,15 +3,13 @@ import vector from "../../../images/Vector.png";
 import "./style.scss";
 const FilterNav = (props) => {
   const [activeLinke, setLinkActive] = useState(1);
+  const [menuActive, setmenuActive] = useState(false);
   const activeLink = (num) => {
     setLinkActive(num);
   };
-  const [menuActive, setmenuActive] = useState(false);
-
   const filterMenuState = () => {
     setmenuActive(!menuActive);
   };
-
   const stateOptions = props.rides.map((ride) => {
     return (
       <option
@@ -25,7 +23,7 @@ const FilterNav = (props) => {
   const cityOptions = props.rides.map((ride) => {
     return (
       <option
-        value={ride.destination_station_code}
+        value={ride.origin_station_code}
         key={ride.id * (Math.random() * 1000)}
       >
         {ride.city}

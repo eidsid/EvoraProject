@@ -15,9 +15,8 @@ const RidesShow = (props) => {
   const [stationcode, setstationcode] = useState({});
 
   function filterFunction(element) {
-    for (let i = 0; i < rides.length; i++) {
-      setstationcode(element.target.value);
-    }
+    setstationcode(element.target.value);
+    console.log(element.target.value);
   }
   // get user station_code
   useEffect(() => {
@@ -39,20 +38,36 @@ const RidesShow = (props) => {
     return near;
   };
   useEffect(() => {
+    setNearPastRides([]);
+    setnearComingRides([]);
+    setNearRides([]);
+    setDomRides([]);
     rides.forEach((ride) => {
       if (checkIfNear(ride.station_path)) {
         const date = new Date(ride.date);
         setNearRides((prevrides) => [...prevrides, ride]);
         setDomRides((prevrides) => [...prevrides, ride]);
         if (date.getMonth() <= 2) {
-          setNearPastRides((prevrides) => [...prevrides, ride]);
+          setNearPastRides((prevrides) => {
+            if (!prevrides.includes(ride)) {
+              return [...prevrides, ride];
+            } else {
+              return prevrides;
+            }
+          });
         } else {
-          setnearComingRides((prevrides) => [...prevrides, ride]);
+          setnearComingRides((prevrides) => {
+            if (!prevrides.includes(ride)) {
+              return [...prevrides, ride];
+            } else {
+              return prevrides;
+            }
+          });
         }
       }
     });
-  }, [rides]);
-  useEffect(() => {}, [stationcode]);
+  }, [rides, stationcode]);
+
   let sortRides = DomRides.sort(
     (a, b) => a.destination_station_code - b.destination_station_code
   );
